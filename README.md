@@ -1,1 +1,1 @@
-# Test repository - Group B
+# Test repository - Group A and B
