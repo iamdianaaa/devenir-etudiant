@@ -1,0 +1,21 @@
+name: Recipe check
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Every recipe has a title
+        run: |
+          missing=$(grep -L '^#' *.md || true)
+          if [ -n "$missing" ]; then
+            echo "These files have no title (a line starting with #):"
+            echo "$missing"
+            exit 1
+          fi
+          echo "All recipe files have a title"
+
+      - name: Roll a seeded die
+        run: python3 -c "import random; random.seed(42); print('Seeded die roll:', random.randint(1, 6))"
