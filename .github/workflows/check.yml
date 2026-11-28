@@ -9,7 +9,7 @@ jobs:
 
       - name: Every recipe has a title
         run: |
-          missing=$(grep -L '^#' *.md || true)
+          missing=$(grep -rL --include='*.md' '^#' . || true)
           if [ -n "$missing" ]; then
             echo "These files have no title (a line starting with #):"
             echo "$missing"
